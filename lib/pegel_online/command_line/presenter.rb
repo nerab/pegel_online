@@ -1,7 +1,7 @@
 module PegelOnline
   module WaterPresenter
     def present
-      yield longname.capitalize
+      yield longname
     end
   end
 
@@ -12,7 +12,7 @@ module PegelOnline
         w = p
       end
 
-      yield "#{longname.capitalize} (km #{km} of #{w})"
+      yield "#{longname} (km #{km} of #{w})"
     end
   end
 end
