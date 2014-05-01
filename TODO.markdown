@@ -1,8 +1,5 @@
 * Provide finders for stations by
 
-  1. Name => not an exact lookup (use the uuid for that), but a fuzzy search
-  1. Short name
-  1. Long name
   1. Water
   1. Radius around coordinates
 

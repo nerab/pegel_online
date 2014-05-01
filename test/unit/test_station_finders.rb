@@ -85,4 +85,25 @@ class TestStationFinders < MiniTest::Test
     assert_equal(3, results.size)
     assert_equal(['501110', '503050', '586310'], results.map{|r| r.number})
   end
+
+  def test_find_by_name_single_result
+    results = mocked do
+      Station.find_by(name: 'FLENSBURG')
+    end
+
+    assert_kind_of(Array, results)
+    assert_equal(1, results.size)
+    flensburg = results.first
+    refute_nil(flensburg)
+    assert_equal('9e19c411-f728-4a43-a057-39d4155c71cc', flensburg.uuid)
+  end
+
+  def test_find_by_name_multiple_results
+    results = mocked do
+      Station.find_by(name: 'burg')
+    end
+
+    assert_kind_of(Array, results)
+    assert_equal(39, results.size)
+  end
 end

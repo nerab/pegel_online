@@ -7,9 +7,7 @@ module PegelOnline
         end
       end
 
-      def self.present(station_s, presenter = PegelOnline::StationPresenter)
-        stations = [station_s]
-
+      def self.present(stations, presenter = PegelOnline::StationPresenter)
         STDERR.puts "#{stations.size} results:"
 
         stations.each do |s|

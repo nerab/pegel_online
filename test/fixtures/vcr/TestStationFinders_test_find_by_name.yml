@@ -1,0 +1,52 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://www.pegelonline.wsv.de/webservices/rest-api/v2/stations.json?fuzzyId=FLENSBURG
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Typhoeus - https://github.com/typhoeus/typhoeus
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 01 May 2014 19:24:41 GMT
+      Server:
+      - Apache
+      ETag:
+      - "\"a39cc1171d41cb4dfdf4db4b96444b4d03e84f44eb9a7e68295897e7d228c618\""
+      Cache-Control:
+      - no-transform, must-revalidate, proxy-revalidate, max-age=18
+      Expires:
+      - Thu, 01 May 2014 19:25:00 GMT
+      Content-Length:
+      - '339'
+      Vary:
+      - Accept-Encoding
+      Access-Control-Allow-Origin:
+      - "*"
+      Content-Type:
+      - application/json;charset=UTF-8
+      Set-Cookie:
+      - pegelonlineSP=3560824894.1.4087472480.1976890208; path=/
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        WwogIHsKICAgICJ1dWlkIjogIjllMTljNDExLWY3MjgtNGE0My1hMDU3LTM5
+        ZDQxNTVjNzFjYyIsCiAgICAibnVtYmVyIjogIjk2MTAwMTAiLAogICAgInNo
+        b3J0bmFtZSI6ICJGTEVOU0JVUkciLAogICAgImxvbmduYW1lIjogIkZMRU5T
+        QlVSRyIsCiAgICAia20iOiA0LjAsCiAgICAiYWdlbmN5IjogIldTQSBMw5xC
+        RUNLIiwKICAgICJsb25naXR1ZGUiOiA5LjQzMjk4MDk1NDg0ODczNiwKICAg
+        ICJsYXRpdHVkZSI6IDU0Ljc5NTA0NzUxOTcyOTU5LAogICAgIndhdGVyIjog
+        ewogICAgICAic2hvcnRuYW1lIjogIk9TVFNFRSIsCiAgICAgICJsb25nbmFt
+        ZSI6ICJPU1RTRUUiCiAgICB9CiAgfQpd
+    http_version: '1.1'
+    adapter_metadata:
+      effective_url: http://www.pegelonline.wsv.de/webservices/rest-api/v2/stations.json?fuzzyId=FLENSBURG
+  recorded_at: Thu, 01 May 2014 19:24:41 GMT
+recorded_with: VCR 2.9.0

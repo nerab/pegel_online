@@ -35,8 +35,14 @@ module PegelOnline
       end
 
       def find_by(options = {})
-        [JSON.parse(PegelOnline.retrieve_stations(:by => options))].map do |json|
-          StationMapper.map(json)
+        result = JSON.parse(PegelOnline.retrieve_stations(:by => options))
+
+        if Array.try_convert(result)
+          result.map do |json|
+            StationMapper.map(json)
+          end
+        else
+          [StationMapper.map(result)]
         end
       end
 

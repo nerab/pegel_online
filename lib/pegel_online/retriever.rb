@@ -22,6 +22,13 @@ module PegelOnline
   def self.retrieve_stations(options = {})
     url = "http://www.pegelonline.wsv.de/webservices/rest-api/v2/"
 
+# TODO
+# if tmp = Array.try_convert(arg)
+#   # the argument is an array
+# elsif tmp = String.try_convert(arg)
+#   # the argument is a string
+# end
+
     if options.nil? || options.empty?
       url << 'stations.json'
     elsif String === options
@@ -36,6 +43,8 @@ module PegelOnline
 
       if :uuid == key || :number == key
         url <<  "stations/#{options[:by].values.first}.json"
+      elsif :name == key
+        url << "stations.json?fuzzyId=#{options[:by].values.first}"
       else
         raise UnknownFindBy.new(key)
       end
