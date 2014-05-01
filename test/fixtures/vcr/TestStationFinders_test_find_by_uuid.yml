@@ -1,0 +1,51 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://www.pegelonline.wsv.de/webservices/rest-api/v2/stations/16b9b4e7-be14-41fd-941e-6755c97276cc.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Typhoeus - https://github.com/typhoeus/typhoeus
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 01 May 2014 16:03:32 GMT
+      Server:
+      - Apache
+      ETag:
+      - "\"f8c3a5caf922ca2cf2a8cf231d75de0e63c64c44f7db5b234736033e481cc69e\""
+      Cache-Control:
+      - no-transform, must-revalidate, proxy-revalidate, max-age=27
+      Expires:
+      - Thu, 01 May 2014 16:04:00 GMT
+      Content-Length:
+      - '306'
+      Vary:
+      - Accept-Encoding
+      Access-Control-Allow-Origin:
+      - "*"
+      Content-Type:
+      - application/json;charset=UTF-8
+      Set-Cookie:
+      - pegelonlineSP=3560824894.1.4087472480.1964820928; path=/
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        ewogICJ1dWlkIjogIjE2YjliNGU3LWJlMTQtNDFmZC05NDFlLTY3NTVjOTcy
+        NzZjYyIsCiAgIm51bWJlciI6ICI1MDExNjAiLAogICJzaG9ydG5hbWUiOiAi
+        TcOcSExCRVJHIiwKICAibG9uZ25hbWUiOiAiTcOcSExCRVJHIiwKICAia20i
+        OiAxMjguMDIsCiAgImFnZW5jeSI6ICJXU0EgRFJFU0RFTiIsCiAgImxvbmdp
+        dHVkZSI6IDEzLjE5MTc2MTg5MDQwMDA3MiwKICAibGF0aXR1ZGUiOiA1MS40
+        MzczNDk1NTY4MzQ0MSwKICAid2F0ZXIiOiB7CiAgICAic2hvcnRuYW1lIjog
+        IkVMQkUiLAogICAgImxvbmduYW1lIjogIkVMQkUiCiAgfQp9
+    http_version: '1.1'
+    adapter_metadata:
+      effective_url: http://www.pegelonline.wsv.de/webservices/rest-api/v2/stations/16b9b4e7-be14-41fd-941e-6755c97276cc.json
+  recorded_at: Thu, 01 May 2014 16:03:32 GMT
+recorded_with: VCR 2.9.0

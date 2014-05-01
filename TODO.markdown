@@ -1,9 +1,6 @@
-* Lookup Water and Stations objects by UUID
-
 * Provide finders for stations by
 
-  1. Name
-  1. Station number
+  1. Name => not an exact lookup (use the uuid for that), but a fuzzy search
   1. Short name
   1. Long name
   1. Water
@@ -16,7 +13,7 @@
   1. Short name
   1. Long name
 
-* Compare Water and Stations objects by identity (uuid) and equality (all attributes equal, even if the uuid is nil)
+* Compare Water and Station objects by identity (uuid) and equality (all attributes equal, even if the uuid is nil)
 
 * Exploit the [caching headers](http://www.pegelonline.wsv.de/webservice/dokuRestapi#caching)
 

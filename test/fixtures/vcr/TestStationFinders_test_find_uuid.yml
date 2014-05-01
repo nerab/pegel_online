@@ -1,0 +1,60 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://www.pegelonline.wsv.de/webservices/rest-api/v2/stations.json?ids=728bd3e3-23f2-41c6-8ac5-4cfa223a5a7e
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Typhoeus - https://github.com/typhoeus/typhoeus
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 01 May 2014 15:51:55 GMT
+      Server:
+      - Apache
+      ETag:
+      - "\"878df1fdda9ab1ad181b2c644efecb4259a0c1c40976874e32832cc5a75c3797\""
+      Cache-Control:
+      - no-transform, must-revalidate, proxy-revalidate, max-age=4
+      Expires:
+      - Thu, 01 May 2014 15:52:00 GMT
+      Content-Length:
+      - '348'
+      Vary:
+      - Accept-Encoding
+      Access-Control-Allow-Origin:
+      - "*"
+      Content-Type:
+      - application/json;charset=UTF-8
+      Set-Cookie:
+      - pegelonlineSP=3560824894.1.4087472480.1964119808; path=/
+    body:
+      encoding: UTF-8
+      string: |-
+        [
+          {
+            "uuid": "728bd3e3-23f2-41c6-8ac5-4cfa223a5a7e",
+            "number": "90100111",
+            "shortname": "UELZEN OW",
+            "longname": "UELZEN OW",
+            "km": 60.38,
+            "agency": "WSA UELZEN",
+            "longitude": 10.614719701462517,
+            "latitude": 52.90933657890343,
+            "water": {
+              "shortname": "ESK",
+              "longname": "ELBESEITENKANAL"
+            }
+          }
+        ]
+    http_version: '1.1'
+    adapter_metadata:
+      effective_url: http://www.pegelonline.wsv.de/webservices/rest-api/v2/stations.json?ids=728bd3e3-23f2-41c6-8ac5-4cfa223a5a7e
+  recorded_at: Thu, 01 May 2014 15:51:55 GMT
+recorded_with: VCR 2.9.0
