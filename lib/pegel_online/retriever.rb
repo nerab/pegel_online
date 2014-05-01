@@ -1,7 +1,15 @@
+require 'typhoeus'
+
 module PegelOnline
   Timeout = Class.new(StandardError)
   Error = Class.new(StandardError)
-  UnknownFindBy = Class.new(StandardError)
+
+  UnknownFindBy = Class.new(StandardError) do
+    def initialize(unknown)
+      super("The query operator '#{unknown}' is not supported.")
+    end
+  end
+
   UnsupportedBy = Class.new(StandardError)
   EmptyFindBy = Class.new(StandardError)
 
@@ -11,7 +19,7 @@ module PegelOnline
     end
   end
 
-  def retrieve_stations(options = {})
+  def self.retrieve_stations(options = {})
     url = "http://www.pegelonline.wsv.de/webservices/rest-api/v2/"
 
     if options.nil? || options.empty?
@@ -29,7 +37,7 @@ module PegelOnline
       if :uuid == key || :number == key
         url <<  "stations/#{options[:by].values.first}.json"
       else
-        raise UnknownFindBy.new(options[:by])
+        raise UnknownFindBy.new(key)
       end
     else
       raise MissingFindBy
@@ -42,11 +50,11 @@ module PegelOnline
     retrieve(url)
   end
 
-  def retrieve_waters(options = {})
+  def self.retrieve_waters(options = {})
     retrieve('http://www.pegelonline.wsv.de/webservices/rest-api/v2/waters.json')
   end
 
-  def retrieve(url)
+  def self.retrieve(url)
     request = Typhoeus::Request.new(url, followlocation: true)
 
     request.on_complete do |response|

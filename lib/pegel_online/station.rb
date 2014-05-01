@@ -29,13 +29,13 @@ module PegelOnline
   class Station < Struct.new(:uuid, :number, :shortname, :longname, :km, :agency, :longitude, :latitude, :water)
     class << self
       def all(options = {})
-        JSON.parse(retrieve_stations(options)).map do |json|
+        JSON.parse(PegelOnline.retrieve_stations(options)).map do |json|
           StationMapper.map(json)
         end
       end
 
       def find_by(options = {})
-        [JSON.parse(retrieve_stations(:by => options))].map do |json|
+        [JSON.parse(PegelOnline.retrieve_stations(:by => options))].map do |json|
           StationMapper.map(json)
         end
       end
@@ -43,7 +43,7 @@ module PegelOnline
       def find(*numbers_or_uuids)
         ids = Array(numbers_or_uuids)
 
-        result = JSON.parse(retrieve_stations(ids)).map do |json|
+        result = JSON.parse(PegelOnline.retrieve_stations(ids)).map do |json|
           StationMapper.map(json)
         end
 

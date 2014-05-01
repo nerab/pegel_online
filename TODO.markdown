@@ -23,4 +23,4 @@
 
 * Add static file cache for command line usage
 
-* Expose finders on the command line
+* Enhance the command line program to present additional information

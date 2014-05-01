@@ -1,7 +1,19 @@
 #!/usr/bin/env ruby
 
 require_relative '../lib/pegel_online'
-include PegelOnline
 
-STDERR.puts 'TBD'
-exit 1
+debug = false
+
+begin
+  PegelOnline::CommandLine::Processor.invoke(ARGV)
+rescue
+  STDERR.puts "Error: #{$!.message}"
+
+  if debug
+    $!.backtrace.each do |b|
+      STDERR.puts(b)
+    end
+  end
+
+  exit 1
+end

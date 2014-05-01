@@ -15,7 +15,7 @@ module PegelOnline
   class Water < Struct.new(:shortname, :longname)
     class << self
       def all
-        JSON.parse(retrieve_waters).map do |json|
+        JSON.parse(PegelOnline.retrieve_waters).map do |json|
           WaterMapper.map(json)
         end
       end
