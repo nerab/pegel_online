@@ -1,20 +1,6 @@
-* Move to [REST API](http://www.pegelonline.wsv.de/webservice/dokuRestapi)
+* Lookup Water and Stations objects by UUID
 
-    http://www.pegelonline.wsv.de/webservices/rest-api/v2/stations.json?includeTimeseries=true&includeCurrentMeasurement=true
-
-  * All waters including all stations:
-
-      http://www.pegelonline.wsv.de/webservices/rest-api/v2/waters.json?includeStations=true&includeTimeseries=true&includeCurrentMeasurement=true
-
-* Exploit the [caching headers](http://www.pegelonline.wsv.de/webservice/dokuRestapi#caching)
-
-* Use [compression](http://www.pegelonline.wsv.de/webservice/dokuRestapi#compression)
-
-* Rename Level to Station
-
-* Rename Waterway to Water
-
-* Refer to levels by UUID and provide finders by
+* Provide finders for stations by
 
   1. Name
   1. Station number
@@ -25,5 +11,17 @@
 
     http://www.pegelonline.wsv.de/webservices/rest-api/v2/stations.json?latitude=52.44&longitude=13.57&radius=30
 
-* Static file cache for command line usage
-* Expose finders on command line
+* Provide finders for waters by
+
+  1. Short name
+  1. Long name
+
+* Compare Water and Stations objects by identity (uuid) and equality (all attributes equal, even if the uuid is nil)
+
+* Exploit the [caching headers](http://www.pegelonline.wsv.de/webservice/dokuRestapi#caching)
+
+* Use [compression](http://www.pegelonline.wsv.de/webservice/dokuRestapi#compression)
+
+* Add static file cache for command line usage
+
+* Expose finders on the command line

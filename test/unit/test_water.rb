@@ -2,14 +2,17 @@ require 'helper'
 
 class TestWater < MiniTest::Test
   def setup
-    mocked('setup') do
-      @waters = Water.all
-    end
+    @how = Water.new('HOW', 'HAVEL-ODER-WASSERSTRASSE')
   end
 
-  def test_size
-    mocked{
-      assert_equal(42, @waters.size)
-    }
+  def test_empty
+    w = Water.new
+    refute_nil(w)
+  end
+
+  def test_attributes
+    refute_nil(@how)
+    assert_equal('HOW', @how.shortname)
+    assert_equal('HAVEL-ODER-WASSERSTRASSE', @how.longname)
   end
 end
