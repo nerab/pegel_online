@@ -37,6 +37,36 @@ class TestStationFinders < MiniTest::Test
     assert_equal('b04b739d-7ffa-41ee-9eb9-95cb1b4ef508', riesa.uuid)
   end
 
+  def test_find_number
+    riesa = mocked do
+      Station.find('501110')
+    end
+
+    refute_nil(riesa)
+    assert_equal('b04b739d-7ffa-41ee-9eb9-95cb1b4ef508', riesa.uuid)
+  end
+
+  def test_find_number_multi
+    results = mocked do
+      Station.find('501110', '503050', '586310')
+    end
+
+    assert_kind_of(Array, results)
+    assert_equal(3, results.size)
+
+    riesa = results[0]
+    refute_nil(riesa)
+    assert_equal('b04b739d-7ffa-41ee-9eb9-95cb1b4ef508', riesa.uuid)
+
+    wittenberge = results[1]
+    refute_nil(wittenberge)
+    assert_equal('cbf3cd49-91bd-49cc-8926-ccc6c0e7eca4', wittenberge.uuid)
+
+    wendisch_rietz_op = results[2]
+    refute_nil(wendisch_rietz_op)
+    assert_equal('a9299f0c-9eb8-4369-a260-4be929e72736', wendisch_rietz_op.uuid)
+  end
+
   def test_find_uuid
     uelzen_ow = mocked do
        Station.find('728bd3e3-23f2-41c6-8ac5-4cfa223a5a7e')
@@ -47,14 +77,12 @@ class TestStationFinders < MiniTest::Test
   end
 
   def test_find_uuid_multi
-    skip
-  end
+    results = mocked do
+      Station.find('b04b739d-7ffa-41ee-9eb9-95cb1b4ef508', 'cbf3cd49-91bd-49cc-8926-ccc6c0e7eca4', 'a9299f0c-9eb8-4369-a260-4be929e72736')
+    end
 
-  def test_find_number
-    skip
-  end
-
-  def test_find_number_multi
-    skip
+    assert_kind_of(Array, results)
+    assert_equal(3, results.size)
+    assert_equal(['501110', '503050', '586310'], results.map{|r| r.number})
   end
 end

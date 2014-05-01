@@ -1,0 +1,88 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://www.pegelonline.wsv.de/webservices/rest-api/v2/stations.json?ids=501110,503050,586310
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Typhoeus - https://github.com/typhoeus/typhoeus
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 01 May 2014 16:18:20 GMT
+      Server:
+      - Apache
+      ETag:
+      - "\"774a048e6e00eeb5cbc9730054f502c7da3d64528a90844f7058a14064ffe1b5\""
+      Cache-Control:
+      - no-transform, must-revalidate, proxy-revalidate, max-age=39
+      Expires:
+      - Thu, 01 May 2014 16:19:00 GMT
+      Content-Length:
+      - '1034'
+      Vary:
+      - Accept-Encoding
+      Access-Control-Allow-Origin:
+      - "*"
+      Content-Type:
+      - application/json;charset=UTF-8
+      Set-Cookie:
+      - pegelonlineSP=3560824894.1.4087472480.1965702336; path=/
+    body:
+      encoding: UTF-8
+      string: |-
+        [
+          {
+            "uuid": "b04b739d-7ffa-41ee-9eb9-95cb1b4ef508",
+            "number": "501110",
+            "shortname": "RIESA",
+            "longname": "RIESA",
+            "km": 108.4,
+            "agency": "WSA DRESDEN",
+            "longitude": 13.293340521685113,
+            "latitude": 51.31148155805161,
+            "water": {
+              "shortname": "ELBE",
+              "longname": "ELBE"
+            }
+          },
+          {
+            "uuid": "cbf3cd49-91bd-49cc-8926-ccc6c0e7eca4",
+            "number": "503050",
+            "shortname": "WITTENBERGE",
+            "longname": "WITTENBERGE",
+            "km": 453.98,
+            "agency": "WSA MAGDEBURG",
+            "longitude": 11.75944299732184,
+            "latitude": 52.98552861101009,
+            "water": {
+              "shortname": "ELBE",
+              "longname": "ELBE"
+            }
+          },
+          {
+            "uuid": "a9299f0c-9eb8-4369-a260-4be929e72736",
+            "number": "586310",
+            "shortname": "WENDISCH RIETZ OP",
+            "longname": "WENDISCH RIETZ OP",
+            "km": 22.77,
+            "agency": "WSA BERLIN",
+            "longitude": 14.004329993353952,
+            "latitude": 52.21418947995005,
+            "water": {
+              "shortname": "SKG",
+              "longname": "STORKOWER GEWAESSER"
+            }
+          }
+        ]
+    http_version: '1.1'
+    adapter_metadata:
+      effective_url: http://www.pegelonline.wsv.de/webservices/rest-api/v2/stations.json?ids=501110,503050,586310
+  recorded_at: Thu, 01 May 2014 16:18:20 GMT
+recorded_with: VCR 2.9.0

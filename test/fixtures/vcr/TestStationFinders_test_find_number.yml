@@ -1,0 +1,60 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://www.pegelonline.wsv.de/webservices/rest-api/v2/stations.json?ids=501110
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Typhoeus - https://github.com/typhoeus/typhoeus
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 01 May 2014 16:18:20 GMT
+      Server:
+      - Apache
+      ETag:
+      - "\"7649986d5bd1ca459ac8b93882df461218bca6cba12d842f21d0ddd5ca51d282\""
+      Cache-Control:
+      - no-transform, must-revalidate, proxy-revalidate, max-age=39
+      Expires:
+      - Thu, 01 May 2014 16:19:00 GMT
+      Content-Length:
+      - '329'
+      Vary:
+      - Accept-Encoding
+      Access-Control-Allow-Origin:
+      - "*"
+      Content-Type:
+      - application/json;charset=UTF-8
+      Set-Cookie:
+      - pegelonlineSP=3560824894.1.4087472480.1965702336; path=/
+    body:
+      encoding: UTF-8
+      string: |-
+        [
+          {
+            "uuid": "b04b739d-7ffa-41ee-9eb9-95cb1b4ef508",
+            "number": "501110",
+            "shortname": "RIESA",
+            "longname": "RIESA",
+            "km": 108.4,
+            "agency": "WSA DRESDEN",
+            "longitude": 13.293340521685113,
+            "latitude": 51.31148155805161,
+            "water": {
+              "shortname": "ELBE",
+              "longname": "ELBE"
+            }
+          }
+        ]
+    http_version: '1.1'
+    adapter_metadata:
+      effective_url: http://www.pegelonline.wsv.de/webservices/rest-api/v2/stations.json?ids=501110
+  recorded_at: Thu, 01 May 2014 16:18:20 GMT
+recorded_with: VCR 2.9.0
