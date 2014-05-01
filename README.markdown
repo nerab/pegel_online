@@ -1,6 +1,6 @@
 # pegel_online
 
-Wrapper around the PegelOnline REST API
+Wrapper around the [PegelOnline REST API](http://www.pegelonline.wsv.de/webservice/dokuRestapi).
 
 ## Installation
 
