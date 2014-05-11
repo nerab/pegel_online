@@ -19,6 +19,38 @@ class TestStation < MiniTest::Test
     refute_nil(s)
   end
 
+  def test_equal
+    konstanz = Station.new
+    refute_equal(@konstanz, konstanz)
+
+    konstanz.uuid      = 'aa9179c1-17ef-4c61-a48a-74193fa7bfdf'
+    refute_equal(@konstanz, konstanz)
+
+    konstanz.number    = '906'
+    refute_equal(@konstanz, konstanz)
+
+    konstanz.shortname = 'KONSTANZ'
+    refute_equal(@konstanz, konstanz)
+
+    konstanz.longname  = 'KONSTANZ'
+    refute_equal(@konstanz, konstanz)
+
+    konstanz.km        = 0.0
+    refute_equal(@konstanz, konstanz)
+
+    konstanz.agency    = 'REGIERUNGSPRÄSIDIUM FREIBURG'
+    refute_equal(@konstanz, konstanz)
+
+    konstanz.longitude = 9.172833233102148
+    refute_equal(@konstanz, konstanz)
+
+    konstanz.latitude  = 7.66789422885012
+    refute_equal(@konstanz, konstanz)
+
+    konstanz.water = Water.new('BODENSEE', 'BODENSEE')
+    assert_equal(@konstanz, konstanz)
+  end
+
   def test_attributes
     refute_nil(@konstanz)
     assert_equal('aa9179c1-17ef-4c61-a48a-74193fa7bfdf', @konstanz.uuid)
