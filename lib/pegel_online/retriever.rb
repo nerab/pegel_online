@@ -1,4 +1,6 @@
 require 'typhoeus'
+require 'uri'
+require 'cgi'
 
 module PegelOnline
   Timeout = Class.new(StandardError)
@@ -20,7 +22,7 @@ module PegelOnline
   end
 
   def self.retrieve_stations(options = {})
-    url = "http://www.pegelonline.wsv.de/webservices/rest-api/v2/"
+    url = URI("http://www.pegelonline.wsv.de/webservices/rest-api/v2/")
 
     # TODO
     # if tmp = Array.try_convert(arg)
@@ -30,11 +32,12 @@ module PegelOnline
     # end
 
     if options.nil? || options.empty?
-      url << 'stations.json'
+      url.path << 'stations.json'
     elsif String === options
-      url << "stations/#{options}.json"
+      url.path << "stations/#{options}.json"
     elsif Array === options
-      url << "stations.json?ids=#{options.join(',')}"
+      url.path << 'stations.json'
+      url.query = "ids=#{CGI.escape(options.join(','))}"
     elsif options[:by]
       raise UnsupportedBy if 1 < options[:by].size
       raise EmptyFindBy if options[:by].empty?
@@ -42,9 +45,13 @@ module PegelOnline
       key = options[:by].keys.first
 
       if :uuid == key || :number == key
-        url <<  "stations/#{options[:by].values.first}.json"
+        url.path <<  "stations/#{options[:by].values.first}.json"
       elsif :name == key
-        url << "stations.json?fuzzyId=#{options[:by].values.first}"
+        url.path << 'stations.json'
+        url.query = "fuzzyId=#{CGI.escape(options[:by].values.first)}"
+      elsif :water == key
+        url.path << 'stations.json'
+        url.query = "waters=#{CGI.escape(options[:by].values.first)}"
       else
         raise UnknownFindBy.new(key)
       end
@@ -52,8 +59,12 @@ module PegelOnline
       raise MissingFindBy
     end
 
-    # if with = options[:with] && :measurements == with
-    #   url << '?includeTimeseries=true&includeCurrentMeasurement=true'
+    # if with = options[:with] && :measurement == with
+    #   url << '?includeCurrentMeasurement=true'
+    # end
+
+    # if with = options[:with] && :timeseries == with
+    #   url << '?includeTimeseries=true'
     # end
 
     retrieve(url)
