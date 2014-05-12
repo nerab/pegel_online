@@ -1,15 +1,66 @@
 #!/usr/bin/env ruby
 
 require_relative '../lib/pegel_online'
+require 'optparse'
 
-debug = false
+options = {}
 
 begin
-  PegelOnline::CommandLine::Processor.invoke(ARGV)
+  params = OptionParser.new do |opts|
+    opts.banner = <<HERE
+  Shows information about waters and stations. Data provided by PegelOnline.
+
+  Usage:
+      #{File.basename($0)} [options] [water | station]
+
+  Examples:
+      # all stations
+      #{File.basename($0)}
+
+      # all stations of a water
+      #{File.basename($0)} --water=Elbe
+
+      # single station (accepts name, station number or id of the station)
+      #{File.basename($0)} Koblenz
+
+      # all waters
+      #{File.basename($0)} --all-waters
+
+  Author:
+      Nicolas E. Rabenau nerab@gmx.at
+
+  Homepage:
+      http://github.com/nerab/pegel_online
+
+  Options:
+HERE
+
+    opts.on("-v", "--verbose", "Run verbosely") do
+      options[:verbose] = true
+    end
+
+    opts.on("-d", "--debug", "Run with debug traces enabled") do |v|
+      options[:debug] = true
+    end
+
+    opts.on("-u", "--uuid", "Show the uuid instead of the name of a station") do |v|
+      options[:uuid] = true
+    end
+
+    opts.on("-w", "--water WATER", "Fetch stations along WATER") do |water|
+      options[:water] = water
+    end
+
+    opts.on("-W", "--all-waters", "Fetch all waters") do
+      options[:all_waters] = true
+    end
+  end.parse!
+
+  PegelOnline::CommandLine::Processor.invoke(ARGV, options)
 rescue
   STDERR.puts "Error: #{$!.message}"
 
-  if debug
+  if options[:debug]
     $!.backtrace.each do |b|
       STDERR.puts(b)
     end

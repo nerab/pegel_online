@@ -1,4 +1,4 @@
-* Use OptionParser to set -d or --debug and other flags
+* Use OptionParser to set flags
 
 * Load measurements:
 
