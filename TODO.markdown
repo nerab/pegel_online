@@ -1,4 +1,6 @@
-* Use OptionParser to set flags
+* Enhance the command line program to present measurement and other attributes with options.
+
+* Extract UrlBuilder from PegelOnline.retrieve_stations so that it is testable separately.
 
 * Load measurements:
 
@@ -28,17 +30,7 @@
 
   If the Station or Water were loaded without including the measurement, calling Station#measurement will result in an additional HTTP call to fetch the measurement of this station.
 
-* Enhance the command line program to present measurement and other attributes with options.
-
-* Extract UrlBuilder from PegelOnline.retrieve_stations so that it is testable separately.
-
-* Provide finders for stations by
-
-  1. Water
-
-        Station.find_by(:water => 'Elbe')
-
-  1. Radius around coordinates
+* Provide finders for stations by radius around coordinates
 
     http://www.pegelonline.wsv.de/webservices/rest-api/v2/stations.json?latitude=52.44&longitude=13.57&radius=30
 
