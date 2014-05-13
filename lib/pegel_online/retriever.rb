@@ -75,7 +75,7 @@ module PegelOnline
   end
 
   def self.retrieve(url)
-    request = Typhoeus::Request.new(url, followlocation: true)
+    request = Typhoeus::Request.new(url.to_s, followlocation: true)
 
     request.on_complete do |response|
       if response.success?
