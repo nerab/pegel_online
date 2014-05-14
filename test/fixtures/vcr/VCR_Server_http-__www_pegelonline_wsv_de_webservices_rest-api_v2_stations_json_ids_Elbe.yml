@@ -1,0 +1,44 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://www.pegelonline.wsv.de/webservices/rest-api/v2/stations.json?ids=Elbe
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Typhoeus - https://github.com/typhoeus/typhoeus
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 14 May 2014 18:42:04 GMT
+      Server:
+      - Apache
+      ETag:
+      - "\"4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945\""
+      Cache-Control:
+      - no-transform, must-revalidate, proxy-revalidate
+      Expires:
+      - Wed, 14 May 2014 18:42:00 GMT
+      Content-Length:
+      - '2'
+      Vary:
+      - Accept-Encoding
+      Access-Control-Allow-Origin:
+      - "*"
+      Content-Type:
+      - application/json;charset=UTF-8
+      Set-Cookie:
+      - pegelonlineSP=2535907390.1.4087472480.3097710848; path=/
+    body:
+      encoding: UTF-8
+      string: "[]"
+    http_version: '1.1'
+    adapter_metadata:
+      effective_url: http://www.pegelonline.wsv.de/webservices/rest-api/v2/stations.json?ids=Elbe
+  recorded_at: Wed, 14 May 2014 18:42:04 GMT
+recorded_with: VCR 2.9.0

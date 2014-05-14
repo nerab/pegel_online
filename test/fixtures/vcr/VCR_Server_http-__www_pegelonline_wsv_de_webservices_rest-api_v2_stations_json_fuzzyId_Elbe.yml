@@ -1,0 +1,116 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://www.pegelonline.wsv.de/webservices/rest-api/v2/stations.json?fuzzyId=Elbe
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Typhoeus - https://github.com/typhoeus/typhoeus
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 14 May 2014 18:42:04 GMT
+      Server:
+      - Apache
+      ETag:
+      - "\"8cb804eade5b62cdaeb265f12267e2936e620ca7b1f66a57408c540b89b161ff\""
+      Cache-Control:
+      - no-transform, must-revalidate, proxy-revalidate
+      Expires:
+      - Wed, 14 May 2014 18:42:00 GMT
+      Content-Length:
+      - '1826'
+      Vary:
+      - Accept-Encoding
+      Access-Control-Allow-Origin:
+      - "*"
+      Content-Type:
+      - application/json;charset=UTF-8
+      Set-Cookie:
+      - pegelonlineSP=2535907390.1.4087472480.3097710848; path=/
+    body:
+      encoding: UTF-8
+      string: |-
+        [
+          {
+            "uuid": "bb6fd2f0-458a-4ea5-aa58-e1c1a2fbd56d",
+            "number": "502475",
+            "shortname": "HAVELBERG EP",
+            "longname": "HAVELBERG EP",
+            "km": 147.305,
+            "agency": "WSA BRANDENBURG",
+            "longitude": 12.053033291476808,
+            "latitude": 52.83374515518998,
+            "water": {
+              "shortname": "UHW",
+              "longname": "UNTERE HAVEL-WASSERSTRASSE"
+            }
+          },
+          {
+            "uuid": "ce086a21-29c2-444c-b53d-f3b70b086b2f",
+            "number": "580800",
+            "shortname": "HAVELBERG UP",
+            "longname": "HAVELBERG UP",
+            "km": 146.89,
+            "agency": "WSA BRANDENBURG",
+            "longitude": 12.057095253478064,
+            "latitude": 52.830993541010926,
+            "water": {
+              "shortname": "UHW",
+              "longname": "UNTERE HAVEL-WASSERSTRASSE"
+            }
+          },
+          {
+            "uuid": "827b2685-47ec-44df-a90f-980f5e0c1591",
+            "number": "23800760",
+            "shortname": "Heidelberg UP",
+            "longname": "HEIDELBERG UP",
+            "km": 26.5,
+            "agency": "WSA HEIDELBERG",
+            "longitude": 8.717737397665669,
+            "latitude": 49.414687861109506,
+            "water": {
+              "shortname": "NECKAR",
+              "longname": "NECKAR"
+            }
+          },
+          {
+            "uuid": "c203d5fb-96d7-4643-b2ef-b13b1d88c75b",
+            "number": "580790",
+            "shortname": "HAVELBERG STADT",
+            "longname": "HAVELBERG STADT",
+            "km": 145.29,
+            "agency": "WSA BRANDENBURG",
+            "longitude": 12.078042811886517,
+            "latitude": 52.82407313643986,
+            "water": {
+              "shortname": "UHW",
+              "longname": "UNTERE HAVEL-WASSERSTRASSE"
+            }
+          },
+          {
+            "uuid": "7fec2f4f-6a2e-47ec-8f3c-016c581e4bbd",
+            "number": "90100122",
+            "shortname": "ELBE (ARTLENBURG)",
+            "longname": "ELBE (ARTLENBURG)",
+            "km": 114.74,
+            "agency": "WSA UELZEN",
+            "longitude": 10.501986716627133,
+            "latitude": 53.368564025269755,
+            "water": {
+              "shortname": "ESK",
+              "longname": "ELBESEITENKANAL"
+            }
+          }
+        ]
+    http_version: '1.1'
+    adapter_metadata:
+      effective_url: http://www.pegelonline.wsv.de/webservices/rest-api/v2/stations.json?fuzzyId=Elbe
+  recorded_at: Wed, 14 May 2014 18:42:04 GMT
+recorded_with: VCR 2.9.0

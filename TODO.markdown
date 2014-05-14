@@ -1,5 +1,7 @@
 * Enhance the command line program to present measurement and other attributes with options.
 
+* Change VCR record mode according to http://stackoverflow.com/a/12832092
+
 * Extract UrlBuilder from PegelOnline.retrieve_stations so that it is testable separately.
 
 * Load measurements:

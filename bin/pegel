@@ -47,6 +47,10 @@ HERE
       options[:uuid] = true
     end
 
+    opts.on("-U", "--url URL", "Use URL for the API endpoint") do |url|
+      PegelOnline.endpoint = url
+    end
+
     opts.on("-w", "--water WATER", "Fetch stations along WATER") do |water|
       options[:water] = water
     end

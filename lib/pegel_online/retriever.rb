@@ -22,7 +22,7 @@ module PegelOnline
   end
 
   def self.retrieve_stations(options = {})
-    url = URI("http://www.pegelonline.wsv.de/webservices/rest-api/v2/")
+    url = URI(endpoint)
 
     # TODO
     # if tmp = Array.try_convert(arg)
@@ -71,7 +71,9 @@ module PegelOnline
   end
 
   def self.retrieve_waters(options = {})
-    retrieve('http://www.pegelonline.wsv.de/webservices/rest-api/v2/waters.json')
+    url = URI(endpoint)
+    url.path << 'waters.json'
+    retrieve(url)
   end
 
   def self.retrieve(url)
