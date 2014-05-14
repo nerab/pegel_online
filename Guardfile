@@ -14,6 +14,8 @@ end
 group 'integration' do
   guard 'minitest' do
     watch(%r{^bin/([^/]+)$}){"test/integration"}
+    watch(%r{^lib/.*/command_line/([^/]+)\.rb$}){|m| "test/integration/test_#{m[1]}.rb"}
+    watch(%r|^lib/*\.rb|){'test/integration'}
     watch(%r|^test/integration/test_(.*)\.rb|){|m| "test/integration/test_#{m[1]}.rb"}
     watch(%r|^test/lib/*\.rb|){'test/integration'}
   end

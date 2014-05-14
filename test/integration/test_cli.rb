@@ -1,9 +1,18 @@
 require 'helper'
 
-class TestCommandStation < IntegrationTest
+class TestCommandLineInterface < IntegrationTest
+  def test_stations_verbose
+    out, err = assert_command('station', 0, verbose: true).map{|s| s.split("\n")}
+    assert_equal(["Getting all stations:"], err)
+  end
+
+  def test_station_verbose
+    out, err = assert_command('station Pirna', 0, verbose: true).map{|s| s.split("\n")}
+    assert_equal(["Getting station Pirna"], err)
+  end
+
   def test_station
-    out, err = assert_command('Konstanz').map{|s| s.split("\n")}
-#    out = assert_command('station')
+    out, err = assert_command('station Konstanz').map{|s| s.split("\n")}
     refute_empty(out, "Expected '#{name}' to produce an non-empty output")
 
     expected = [

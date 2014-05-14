@@ -40,14 +40,16 @@ class IntegrationTest < MiniTest::Test
     @server.stop
   end
 
-  def assert_command(cmd, expected_status = 0, *args)
-    out, err, status = Open3.capture3("#{command} #{cmd} #{Shellwords.join(args)}")
+  def assert_command(cmd, expected_status = 0, args = {})
+    line = "#{command} #{cmd} #{serialize(args)}"
+puts "**** Executing: #{line}"
+    out, err, status = Open3.capture3(line)
     assert_equal(expected_status, status.exitstatus, "Expected exit status to be #{expected_status}, but it was #{status.exitstatus}. STDERR is: '#{err}'")
     [out, err]
   end
 
-  def refute_command(cmd, expected_status = 1, *args)
-    out, err, status = Open3.capture3("#{command} #{cmd}")
+  def refute_command(cmd, expected_status = 1, args = {})
+    out, err, status = Open3.capture3("#{command} #{cmd} #{Shellwords.join(default_args.merge(args))}")
     assert_equal(expected_status, status.exitstatus, "Expected exit status to be #{expected_status}, but it was #{status.exitstatus}.")
     [out, err]
   end
@@ -55,6 +57,20 @@ class IntegrationTest < MiniTest::Test
   private
 
   def command
-    BIN_COMMAND << " --url=#{@server.url}"
+    BIN_COMMAND
+  end
+
+  def default_args
+    {url: @server.url}
+  end
+
+  def serialize(args)
+    default_args.merge(args).map{|k,v|
+      if v
+        "#{k.to_s.shellescape}=#{v.to_s.shellescape}"
+      else
+        "#{k.to_s.shellescape}"
+      end
+    }.map{|a| "--#{a}"}.join(' ')
   end
 end
