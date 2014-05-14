@@ -73,3 +73,13 @@ Or install it yourself as:
 ### Measurement
 ### Timeseries
 ### CurrentMeasurement
+
+# Tests
+
+The integration tests are, albeit using a local API server, quite heavy. That's why they are in their own (guard) group. The can be started with either
+
+    guard --group integration
+
+or
+
+    rake test:integration
