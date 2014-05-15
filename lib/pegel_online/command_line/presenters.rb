@@ -11,10 +11,8 @@ module PegelOnline
   module StationsPresenter
     def present(options = {})
       each do |station|
-        if options[:uuid]
-          yield station.uuid
-        else
-          yield station.longname << (options[:verbose] ? " (km #{station.km} of #{station.water.longname})" : '')
+        station.extend(StationPresenter).present(options) do |sp|
+          yield sp
         end
       end
     end
@@ -25,13 +23,22 @@ module PegelOnline
   #
   module StationPresenter
     def present(options = {})
-      water_presentation = nil
-      water.extend(WaterPresenter).present(options) do |p|
-        water_presentation = p
-      end
+      if options[:uuid]
+        yield uuid
+      else
+        water_presentation = nil
+        water.extend(WaterPresenter).present do |p|
+          water_presentation = p
+        end
 
-      yield "#{longname} (km #{km} of #{water_presentation})"
-      yield "TODO: Measurement"
+        if options[:verbose]
+          yield "#{longname} (km #{km} of #{water_presentation})"
+        else
+          yield longname
+        end
+
+        yield "TODO: Measurement" if options[:measurement]
+      end
     end
   end
 end

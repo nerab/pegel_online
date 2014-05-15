@@ -14,8 +14,17 @@ module VCR
     end
 
     def start
+      webrick = nil
+
       @thread = Thread.new do
-        Rack::Handler::WEBrick.run(self, :Port => @url.port, :Host => @url.host)
+        Rack::Handler::WEBrick.run(self, :Port => @url.port, :Host => @url.host) do |server|
+          webrick = server
+        end
+      end
+
+      timeout(10) do
+        break if webrick && :Running == webrick.status
+        sleep 0.01
       end
     end
 

@@ -42,7 +42,6 @@ class IntegrationTest < MiniTest::Test
 
   def assert_command(cmd, expected_status = 0, args = {})
     line = "#{command} #{cmd} #{serialize(args)}"
-puts "**** Executing: #{line}"
     out, err, status = Open3.capture3(line)
     assert_equal(expected_status, status.exitstatus, "Expected exit status to be #{expected_status}, but it was #{status.exitstatus}. STDERR is: '#{err}'")
     [out, err]
