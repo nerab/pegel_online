@@ -83,3 +83,11 @@ The integration tests are, albeit using a local API server, quite heavy. That's 
 or
 
     rake test:integration
+
+Running all tests, unit and integration, can be accomplished with
+
+    rake test:all
+
+Running a single test method is possible, too:
+
+    ruby test/integration/test_cli.rb --name test_trailing_slash
