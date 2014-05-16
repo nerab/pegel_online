@@ -1,3 +1,4 @@
+require 'vcr'
 require 'rack'
 require 'rack/handler/webrick'
 require 'timeout'
@@ -11,9 +12,14 @@ module VCR
 
     def initialize(port = find_available_port, host = '127.0.0.1')
       @url = URI::HTTP.build({:host => host, port: port, path: '/'})
+
+      VCR.configure do |c|
+        c.cassette_library_dir = 'test/fixtures/vcr'
+        c.hook_into :typhoeus
+      end
     end
 
-    def start
+    def start(block = false)
       webrick = nil
 
       @thread = Thread.new do
@@ -26,6 +32,9 @@ module VCR
         break if webrick && :Running == webrick.status
         sleep 0.01
       end
+
+      # Allow blocking for Rake
+      @thread.join if @thread && block
     end
 
     def stop

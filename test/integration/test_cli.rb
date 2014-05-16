@@ -1,4 +1,4 @@
-require 'helper'
+require_relative '../helper'
 
 class TestCommandLineInterface < IntegrationTest
   def test_unknown_station
@@ -15,7 +15,7 @@ class TestCommandLineInterface < IntegrationTest
 
   def test_stations_verbose
     out, err = assert_command('station', 0, verbose: true).map{|s| s.split("\n")}
-    assert_equal(["Found 607 results:"], err)
+    assert_equal(["Found 606 results:"], err)
   end
 
   def test_station_verbose
@@ -49,6 +49,26 @@ class TestCommandLineInterface < IntegrationTest
     ]
 
     assert_equal(expected, out)
+  end
+
+  def test_trailing_slash
+    out, err = assert_command('station Konstanz', 0, url: server.url.to_s.chomp('/')).map{|s| s.split("\n")}
+    refute_empty(out, "Expected '#{name}' to produce an non-empty output")
+    assert_equal(['KONSTANZ'], out)
+  end
+
+  def test_timeout
+    out, err = refute_command('station Elbe', 1, url: 'http://localhost').map{|s| s.split("\n")}
+    assert_empty(out, "Expected '#{name}' to produce an empty output")
+    assert_equal(['Error: Retrieval of http://localhost/stations.json?ids=Elbe timed out.'], err)
+  end
+
+  def test_unknown_host
+    # http://www.exampl.co
+  end
+
+  def test_url_not_found
+    # http://www.example.com
   end
 
   def test_station_many_verbose

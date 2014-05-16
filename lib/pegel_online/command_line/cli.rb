@@ -6,9 +6,12 @@ module PegelOnline
       class_option :verbose, :type => :boolean
       class_option :url
 
-      desc 'station [NAME | NUMBER | UUID]', 'Get all stations. If present, get only those matching NAME, NUMBER or UUID.'
+      desc 'station [NAME | NUMBER | UUID]', 'Get all stations. If NAME, NUMBER or UUID is present, gets only those matching.'
       method_option :uuid, :type => :boolean, :default => false
+      method_option :measurement, :type => :boolean, :default => false
       def station(name_or_number_or_uuid = nil)
+        PegelOnline.endpoint = options[:url] if options[:url]
+
         if name_or_number_or_uuid.nil? || name_or_number_or_uuid.empty?
           print(Station.all, options)
         else

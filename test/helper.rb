@@ -8,15 +8,15 @@ require 'shellwords'
 
 include PegelOnline
 
-VCR.configure do |c|
-  c.cassette_library_dir = 'test/fixtures/vcr'
-  c.hook_into :typhoeus
-end
-
 class MiniTest::Test
   def initialize(name = nil)
-      @test_name = name
-      super(name) unless name.nil?
+    @test_name = name
+    super(name) unless name.nil?
+
+    VCR.configure do |c|
+      c.cassette_library_dir = 'test/fixtures/vcr'
+      c.hook_into :typhoeus
+    end
   end
 
   def fixture(name)
@@ -29,8 +29,6 @@ class MiniTest::Test
 end
 
 class IntegrationTest < MiniTest::Test
-  BIN_COMMAND = 'bin/pegel'
-
   def setup
     @server = VCR::Server.new
     @server.start
@@ -40,6 +38,12 @@ class IntegrationTest < MiniTest::Test
     @server.stop
   end
 
+  protected
+
+  attr_reader :server
+
+  BIN_COMMAND = 'bin/pegel'
+
   def assert_command(cmd, expected_status = 0, args = {})
     line = "#{command} #{cmd} #{serialize(args)}"
     out, err, status = Open3.capture3(line)
@@ -48,7 +52,8 @@ class IntegrationTest < MiniTest::Test
   end
 
   def refute_command(cmd, expected_status = 1, args = {})
-    out, err, status = Open3.capture3("#{command} #{cmd} #{Shellwords.join(default_args.merge(args))}")
+    line = "#{command} #{cmd} #{serialize(args)}"
+    out, err, status = Open3.capture3(line)
     assert_equal(expected_status, status.exitstatus, "Expected exit status to be #{expected_status}, but it was #{status.exitstatus}.")
     [out, err]
   end

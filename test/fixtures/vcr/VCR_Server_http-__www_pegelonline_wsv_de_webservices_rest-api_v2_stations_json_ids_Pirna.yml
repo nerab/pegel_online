@@ -1,0 +1,60 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://www.pegelonline.wsv.de/webservices/rest-api/v2/stations.json?ids=Pirna
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Typhoeus - https://github.com/typhoeus/typhoeus
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 16 May 2014 19:32:56 GMT
+      Server:
+      - Apache
+      ETag:
+      - "\"c79461c37e9dfdd4a2a6e439c1dbdf40f16d61376b9834af0a446a1850063194\""
+      Cache-Control:
+      - no-transform, must-revalidate, proxy-revalidate, max-age=3
+      Expires:
+      - Fri, 16 May 2014 19:33:00 GMT
+      Content-Length:
+      - '329'
+      Vary:
+      - Accept-Encoding
+      Access-Control-Allow-Origin:
+      - "*"
+      Content-Type:
+      - application/json;charset=UTF-8
+      Set-Cookie:
+      - pegelonlineSP=758243390.1.4087472744.3273591808; path=/
+    body:
+      encoding: UTF-8
+      string: |-
+        [
+          {
+            "uuid": "85d686f1-55b2-4d36-8dba-3207b50901a7",
+            "number": "501040",
+            "shortname": "PIRNA",
+            "longname": "PIRNA",
+            "km": 34.67,
+            "agency": "WSA DRESDEN",
+            "longitude": 13.929755188361455,
+            "latitude": 50.96458457915114,
+            "water": {
+              "shortname": "ELBE",
+              "longname": "ELBE"
+            }
+          }
+        ]
+    http_version: '1.1'
+    adapter_metadata:
+      effective_url: http://www.pegelonline.wsv.de/webservices/rest-api/v2/stations.json?ids=Pirna
+  recorded_at: Fri, 16 May 2014 19:32:56 GMT
+recorded_with: VCR 2.9.0

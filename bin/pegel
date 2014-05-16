@@ -2,7 +2,17 @@
 
 require_relative '../lib/pegel_online'
 
-exit PegelOnline::CommandLine::CLI.start(ARGV).to_i
+begin
+  exit PegelOnline::CommandLine::CLI.start(ARGV).to_i
+rescue
+  STDERR.puts "Error: #{$!.message}"
+
+#  $!.backtrace.each do |b|
+#    STDERR.puts(b)
+#  end
+
+  exit 1
+end
 
 __END__
 require 'optparse'

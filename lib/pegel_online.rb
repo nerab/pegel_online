@@ -5,7 +5,7 @@ require_rel 'pegel_online'
 
 module PegelOnline
   def self.endpoint=(url)
-    @url = url
+    @url = url + (url.end_with?('/') ? '' : '/')
   end
 
   def self.endpoint

@@ -3,24 +3,6 @@ require 'uri'
 require 'cgi'
 
 module PegelOnline
-  Timeout = Class.new(StandardError)
-  Error = Class.new(StandardError)
-
-  UnknownFindBy = Class.new(StandardError) do
-    def initialize(unknown)
-      super("The query operator '#{unknown}' is not supported.")
-    end
-  end
-
-  UnsupportedBy = Class.new(StandardError)
-  EmptyFindBy = Class.new(StandardError)
-
-  MissingFindBy = Class.new(StandardError) do
-    def initialize
-      super('The mandatory option :by is missing')
-    end
-  end
-
   def self.retrieve_stations(options = {})
     url = URI(endpoint)
 
@@ -83,9 +65,11 @@ module PegelOnline
       if response.success?
         return response.body
       elsif response.timed_out?
-        raise Timeout
+        raise ClientError::Timeout.new(url)
+      elsif response.code == 0
+        raise ClientError::General.new(url, response)
       else
-        raise Error, response.code
+        raise ServerError.find(response.code).new(url, response)
       end
     end
 

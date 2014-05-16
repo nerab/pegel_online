@@ -12,6 +12,14 @@ namespace :test do
     test.libs << 'lib' << 'test' << 'test/integration'
     test.pattern = 'test/integration/test_*.rb'
   end
+
+  desc "Run all tests"
+  task :all => [:unit, :integration]
+
+  desc "Start the mock server"
+  task :server do
+    VCR::Server.new(4711).start(true)
+  end
 end
 
-task :default => :'test:unit'
+task :default => :'test:all'
