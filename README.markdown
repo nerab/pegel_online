@@ -32,7 +32,7 @@ Or install it yourself as:
     # station by number
     pegel station 501110
 
-    # station by uuid of the station)
+    # station by uuid of the station
     pegel station 593647aa-9fea-43ec-a7d6-6476a76ae868
 
     # all stations of a water
@@ -76,10 +76,18 @@ Or install it yourself as:
 
 # Tests
 
-The integration tests are, albeit using a local API server, quite heavy. That's why they are in their own (guard) group. The can be started with either
+The integration tests are, albeit using a local API server, quite heavy. That's why they are in their own (guard) group. The can be executed with either
 
     guard --group integration
 
 or
 
     rake test:integration
+
+Running all tests, unit and integration, can be accomplished with
+
+    rake test:all
+
+Running a single test method is possible, too:
+
+    ruby test/integration/test_cli.rb --name test_trailing_slash
